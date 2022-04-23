@@ -2,8 +2,16 @@ import Link from "next/link"
 import Footer from "./Footer"
 import { Box, Flex } from "reflexbox"
 import styles from "./Layout.module.css"
+import { useAccount, useConnect } from "wagmi"
+import Teleport from "../pages/teleport"
+import EthAddress from "./EthAddress"
 
 export default function Layout({ children }) {
+  const [{ data, error, loading }, disconnect] = useAccount({})
+  const [{ data: cdata, error: cerror }, connect] = useConnect()
+
+  console.log({ data, error, loading })
+
   return (
     <>
       <Flex>
@@ -20,15 +28,28 @@ export default function Layout({ children }) {
         </div>
 
         <main className={styles.right}>
-          <Flex justifyContent="flex-end">
-            <Box pr="2">
-              <select className={styles.select}>
-                <option value="eth" selected>
-                  Eth
-                </option>
-              </select>
-            </Box>
-            <div className={styles.select}>0x524...6233</div>
+          <Flex justifyContent="flex-end" mb="3">
+            {data ? (
+              <>
+                <Box pr="2">
+                  <select className={styles.select} defaultValue="rinkeby">
+                    <option value="rinkeby">Rinkeby</option>
+                    <option value="kovan">Kovan</option>
+                  </select>
+                </Box>
+                <div className={styles.select}>
+                  <EthAddress address={data.address} />
+                </div>
+              </>
+            ) : (
+              <button
+                // disabled={!cdata.connectors[0].ready}
+                onClick={() => connect(cdata.connectors[0])}
+                className={styles.select}
+              >
+                Connect
+              </button>
+            )}
           </Flex>
           {children}
         </main>

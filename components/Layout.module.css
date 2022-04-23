@@ -37,3 +37,9 @@
   border-radius: 5rem;
   background-color: white;
 }
+
+.select option {
+  padding: 0.5rem;
+  font-family: initial;
+  font-size: 1.2rem;
+}
