@@ -9,6 +9,9 @@ import TeleportForm from "../components/TeleportForm"
 import { Position } from "../types/Position.d"
 import PositionItem from "../components/PositionItem"
 
+const COLL = 'WBTC'
+const DEBT = 'USDC'
+
 export default function Teleport() {
   const [{ data }] = useAccount({})
   const [positions, setPositions] = useState<Position[]>([])
@@ -29,28 +32,28 @@ export default function Teleport() {
   useEffect(() => {
     async function fetch() {
       const balancesAave = await providerAave.getPairBalances(
-        tokensRinkeby.WBTC.address,
-        tokensRinkeby.USDC.address,
+        tokensRinkeby[COLL].address,
+        tokensRinkeby[DEBT].address,
         data.address,
       );
       const positionAave = {
         collateral: balancesAave.collateral,
-        collateralToken: tokensRinkeby.WBTC,
+        collateralToken: tokensRinkeby[COLL],
         debt: balancesAave.debt,
-        debtToken: tokensRinkeby.USDC,
+        debtToken: tokensRinkeby[DEBT],
         chain: 'Rinkeby',
         protocol: 'Aave',
       };
       const balancesCompound = await providerCompound.getPairBalances(
-        tokensKovan.WBTC.address,
-        tokensKovan.USDC.address,
+        tokensKovan[COLL].address,
+        tokensKovan[DEBT].address,
         data.address,
       );
       const positionCompound = {
         collateral: balancesCompound.collateral,
-        collateralToken: tokensKovan.WBTC,
+        collateralToken: tokensKovan[COLL],
         debt: balancesCompound.debt,
-        debtToken: tokensKovan.USDC,
+        debtToken: tokensKovan[DEBT],
         chain: 'Kovan',
         protocol: 'Compound',
       };
