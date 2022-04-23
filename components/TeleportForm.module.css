@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  margin: 1rem 0;
+  margin: 1rem auto;
   padding: 2rem;
   border: black solid 2px;
   box-shadow: 5px 5px 0px #ceadfa, 7px 7px 0px black;
@@ -8,6 +8,7 @@
   background-repeat: no-repeat;
   max-width: 800px;
   overflow: hidden;
+  background-color: white;
 }
 
 .information {
@@ -35,4 +36,43 @@
 
 .details > summary {
   list-style: none;
+}
+
+.title {
+  font-size: 0.7rem;
+  font-family: "Press Start 2P", cursive;
+  margin-bottom: 2rem;
+}
+
+.label {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.select {
+  padding: 16px 24px;
+  font-size: 0.9rem;
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 2px solid #262626;
+}
+
+.select[disabled] {
+  cursor: not-allowed;
+  border: 2px solid #d8d8d8;
+}
+
+.button {
+  font-size: 0.9rem;
+  font-family: "Press Start 2P", cursive;
+  background-color: #ffbc5a;
+  box-shadow: 5px 5px 0px black;
+  border: 2px solid black;
+  border-radius: 2rem;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
 }
