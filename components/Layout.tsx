@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Footer from "./Footer"
-import { Flex } from "reflexbox"
+import { Box, Flex } from "reflexbox"
 import styles from "./Layout.module.css"
 
 export default function Layout({ children }) {
@@ -19,7 +19,19 @@ export default function Layout({ children }) {
           </nav>
         </div>
 
-        <main className={styles.right}>{children}</main>
+        <main className={styles.right}>
+          <Flex justifyContent="flex-end">
+            <Box pr="2">
+              <select className={styles.select}>
+                <option value="eth" selected>
+                  Eth
+                </option>
+              </select>
+            </Box>
+            <div className={styles.select}>0x524...6233</div>
+          </Flex>
+          {children}
+        </main>
       </Flex>
 
       <Footer />

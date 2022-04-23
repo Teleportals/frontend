@@ -8,7 +8,7 @@
 .right {
   width: 100%;
   background-color: #ecf0f1;
-  padding: 2rem;
+  padding: 2rem 3rem;
 }
 
 .link {
@@ -27,4 +27,13 @@
   font-size: 1rem;
   font-weight: bold;
   margin-bottom: 1rem;
+}
+
+.select {
+  padding: 1rem;
+  font-size: 0.7rem;
+  font-family: "Press Start 2P", cursive;
+  border: 2px solid black;
+  border-radius: 5rem;
+  background-color: white;
 }
