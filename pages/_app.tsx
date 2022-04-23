@@ -1,18 +1,34 @@
-import { Provider, defaultChains } from "wagmi"
-import { InjectedConnector } from "wagmi/connectors/injected"
+import { Provider, chain, defaultChains } from 'wagmi'
+import { InjectedConnector } from 'wagmi/connectors/injected'
+import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
+import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
 import type { AppProps } from "next/app"
 import Layout from "../components/Layout"
 import "../styles/globals.css"
 
 // Chains for connectors to support
 const chains = defaultChains
+const infuraId = process.env.NEXT_PUBLIC_INFURA_ID
 
 // Set up connectors
 const connectors = () => {
+  const rpcUrl = chain.mainnet.rpcUrls[0]
   return [
     new InjectedConnector({
       chains,
       options: { shimDisconnect: true },
+    }),
+    new WalletConnectConnector({
+      options: {
+        infuraId,
+        qrcode: true,
+      },
+    }),
+    new CoinbaseWalletConnector({
+      options: {
+        appName: 'Floan',
+        jsonRpcUrl: `${rpcUrl}/${infuraId}`,
+      },
     }),
   ]
 }

@@ -1,3 +1,4 @@
+import { ethers } from "ethers"
 import { Box, Flex } from "reflexbox"
 import styles from "./Position.module.css"
 import { MouseEventHandler } from "react"
@@ -9,20 +10,26 @@ interface Props {
 }
 
 export default function PositionItem({ onClick, position }: Props) {
+  const { debt, debtToken, collateral, collateralToken, chain, protocol } = position
+
   return (
     <div className={styles.container} onClick={onClick}>
       <Flex justifyContent="space-between" alignItems="center">
         <Box>
-          <div className={styles.chainName}>Ethereum</div>
-          <div>Aave</div>
+          <div className={styles.chainName}>{chain}</div>
+          <div>{protocol}</div>
         </Box>
         <Box>
           <div className={styles.label}>Collateral</div>
-          <div className={styles.value}>1 ETH</div>
+          <div className={styles.value}>
+            {parseFloat(ethers.utils.formatUnits(collateral, collateralToken.decimals)).toFixed(2)} {collateralToken.name}
+          </div>
         </Box>
         <Box>
-          <div className={styles.label}>Borrowed</div>
-          <div className={styles.value}>0.6 ETH</div>
+          <div className={styles.label}>Debt</div>
+          <div className={styles.value}>
+            {parseFloat(ethers.utils.formatUnits(debt, debtToken.decimals)).toFixed(2)} {debtToken.name}
+          </div>
         </Box>
       </Flex>
     </div>

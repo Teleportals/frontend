@@ -1,15 +1,15 @@
+import Popup from "reactjs-popup"
 import Link from "next/link"
 import Footer from "./Footer"
 import { Box, Flex } from "reflexbox"
-import styles from "./Layout.module.css"
 import { useAccount, useConnect } from "wagmi"
 import EthAddress from "./EthAddress"
+import styles from "./Layout.module.css"
+import "reactjs-popup/dist/index.css"
 
 export default function Layout({ children }) {
   const [{ data, error, loading }, disconnect] = useAccount({})
   const [{ data: cdata, error: cerror }, connect] = useConnect()
-
-  console.log({ data, error, loading })
 
   return (
     <>
@@ -43,13 +43,27 @@ export default function Layout({ children }) {
                 </div>
               </>
             ) : (
-              <button
-                // disabled={!cdata.connectors[0].ready}
-                onClick={() => connect(cdata.connectors[0])}
-                className={styles.select}
+              <Popup
+                trigger={
+                  <button className={styles.select}>Connect</button>
+                } 
+                position="bottom center"
               >
-                Connect
-              </button>
+                <div>
+                  {cdata.connectors.map((connector) => (
+                    <button
+                      disabled={!connector.ready}
+                      key={connector.id}
+                      onClick={() => connect(connector)}
+                    >
+                      {connector.name}
+                      {!connector.ready && ' (unsupported)'}
+                    </button>
+                  ))}
+
+                  {cerror && <div>{cerror?.message ?? 'Failed to connect'}</div>}
+                </div>
+              </Popup>
             )}
           </Flex>
           {children}
