@@ -5,7 +5,7 @@ const tokensKovan = {
     protocol: 'compound',
   },
   DAI: {
-    address: '0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa',
+    address: '0x4f96fe3b7a6cf9725f59d353f723c1bdb64ca6aa',
     name: 'DAI',
     protocol: 'compound',
   },

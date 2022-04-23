@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useAccount, useContract } from "wagmi"
-import { AAVE_PROVIDER_ABI } from "../globals/abis"
+import { PROVIDER_ABI } from "../globals/abis"
 import { AAVE_PROVIDER_ADDR } from "../globals/addresses"
 import { tokensRinkeby, tokensKovan } from "../globals/tokens"
 import { providerRinkeby, providerKovan } from "../globals/providers"
@@ -16,13 +16,13 @@ export default function Teleport() {
 
   const providerAave = useContract({
     addressOrName: AAVE_PROVIDER_ADDR,
-    contractInterface: AAVE_PROVIDER_ABI,
+    contractInterface: PROVIDER_ABI,
     signerOrProvider: providerRinkeby,
   })
 
   //const providerCompound = useContract({
   //addressOrName: '',
-  //contractInterface: COMPOUND_PROVIDER_ABI,
+  //contractInterface: PROVIDER_ABI,
   //signerOrProvider: providerKovan,
   //});
 
