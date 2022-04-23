@@ -44,7 +44,9 @@ export default function Layout({ children }) {
               </>
             ) : (
               <Popup
-                trigger={<button className={styles.select}>Connect</button>} 
+                trigger={
+                  <button className={styles.select}>Connect</button>
+                } 
                 position="bottom center"
               >
                 <div>
@@ -59,7 +61,7 @@ export default function Layout({ children }) {
                     </button>
                   ))}
 
-                  {error && <div>{error?.message ?? 'Failed to connect'}</div>}
+                  {cerror && <div>{cerror?.message ?? 'Failed to connect'}</div>}
                 </div>
               </Popup>
             )}
