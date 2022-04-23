@@ -18,17 +18,17 @@ const tokensKovan = {
 
 const tokensRinkeby = { 
   WETH: {
-    address: '0x98a5F1520f7F7fb1e83Fe3398f9aBd151f8C65ed',
+    address: '0xd74047010D77c5901df5b0f9ca518aED56C85e8D',
     name: 'WETH',
     protocol: 'aave',
   },
   WBTC: {
-    address: '37022f97333df61a61595b7cf43b63205290f8ee',
+    address: '0x124F70a8a3246F177b0067F435f5691Ee4e467DD',
     name: 'WBTC',
     protocol: 'aave',
   },
   DAI: {
-    address: '0x2Ec4c6fCdBF5F9beECeB1b51848fc2DB1f3a26af',
+    address: '0x4aAded56bd7c69861E8654719195fCA9C670EB45',
     name: 'DAI',
     protocol: 'aave',
   },

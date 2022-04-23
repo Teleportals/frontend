@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useAccount, useContract } from "wagmi"
-//import { ERC20_ABI } from "../globals/abis"
+import { AAVE_PROVIDER_ABI } from "../globals/abis"
+import { AAVE_PROVIDER_ADDR } from "../globals/addresses"
 import { tokensRinkeby, tokensKovan } from "../globals/tokens"
 import { providerRinkeby, providerKovan } from "../globals/providers"
 import Position from "../components/Position"
@@ -10,15 +11,15 @@ function Teleport() {
   const [{ data }] = useAccount({})
   const [positions, setPositions] = useState([]);
 
-  //const providerAave = useContract({
-    //addressOrName: '',
-    //contractInterface: PROVIDER_AAVE_ABI,
-    //signerOrProvider: providerRinkeby,
-  //});
+  const providerAave = useContract({
+    addressOrName: AAVE_PROVIDER_ADDR,
+    contractInterface: AAVE_PROVIDER_ABI,
+    signerOrProvider: providerRinkeby,
+  });
 
   //const providerCompound = useContract({
     //addressOrName: '',
-    //contractInterface: PROVIDER_COMPOUND_ABI,
+    //contractInterface: COMPOUND_PROVIDER_ABI,
     //signerOrProvider: providerKovan,
   //});
 
@@ -30,9 +31,18 @@ function Teleport() {
 
   useEffect(() => {
     async function fetch() {
-      // call FloanProviderAave getPairBalances(collAddr, debtAddr, userAddr)
-      // call FloanProviderCompound
-      // setPositions()
+      const balances = await providerAave.getPairBalances(
+        tokensRinkeby.WETH.address,
+        tokensRinkeby.DAI.address,
+        data.address,
+      );
+      const positionAave = {
+        collateral: balances.collateral,
+        debt: balances.debt,
+        chain: 'Ethereum',
+        protocol: 'Aave',
+      };
+      setPositions([positionAave]);
     }
     if (data && data.address) fetch();
   }, [data]);
@@ -45,9 +55,9 @@ function Teleport() {
         velit id dicta libero vel autem praesentium tenetur quia.
       </p>
 
-      <Position />
-      <Position />
-      <Position />
+      {positions.map(p => (
+        <Position />
+      ))}
     </div>
   )
 }
