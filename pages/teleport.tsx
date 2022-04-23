@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useAccount, useContract } from "wagmi"
 import { PROVIDER_ABI } from "../globals/abis"
-import { AAVE_PROVIDER_ADDR } from "../globals/addresses"
+import { AAVE_PROVIDER_ADDR, COMPOUND_PROVIDER_ADDR } from "../globals/addresses"
 import { tokensRinkeby, tokensKovan } from "../globals/tokens"
 import { providerRinkeby, providerKovan } from "../globals/providers"
 import styles from "./teleport.module.css"
@@ -20,32 +20,37 @@ export default function Teleport() {
     signerOrProvider: providerRinkeby,
   })
 
-  //const providerCompound = useContract({
-  //addressOrName: '',
-  //contractInterface: PROVIDER_ABI,
-  //signerOrProvider: providerKovan,
-  //});
-
-  //const contract = useContract({
-  //addressOrName: tokensRinkeby.WETH.address,
-  //contractInterface: ERC20_ABI,
-  //signerOrProvider: providerRinkeby,
-  //});
+  const providerCompound = useContract({
+    addressOrName: COMPOUND_PROVIDER_ADDR,
+    contractInterface: PROVIDER_ABI,
+    signerOrProvider: providerKovan,
+  });
 
   useEffect(() => {
     async function fetch() {
-      const balances = await providerAave.getPairBalances(
-        tokensRinkeby.WETH.address,
-        tokensRinkeby.DAI.address,
-        data?.address
-      )
+      const balancesAave = await providerAave.getPairBalances(
+        tokensRinkeby.WBTC.address,
+        tokensRinkeby.USDC.address,
+        data.address,
+      );
       const positionAave = {
-        collateral: balances.collateral,
-        debt: balances.debt,
-        chain: "Ethereum",
-        protocol: "Aave",
-      }
-      setPositions([positionAave])
+        collateral: balancesAave.collateral,
+        debt: balancesAave.debt,
+        chain: 'Rinkeby',
+        protocol: 'Aave',
+      };
+      const balancesCompound = await providerCompound.getPairBalances(
+        tokensKovan.WBTC.address,
+        tokensKovan.USDC.address,
+        data.address,
+      );
+      const positionCompound = {
+        collateral: balancesCompound.collateral,
+        debt: balancesCompound.debt,
+        chain: 'Kovan',
+        protocol: 'Compound',
+      };
+      setPositions([positionAave, positionCompound]);
     }
     if (data && data.address) fetch()
   }, [data])

@@ -1,6 +1,6 @@
 const tokensKovan = { 
   ETH: {
-    address: '0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF',
+    address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
     name: 'ETH',
     protocol: 'compound',
   },
@@ -12,6 +12,11 @@ const tokensKovan = {
   WBTC: {
     address: '0xd3A691C852CDB01E281545A27064741F0B7f6825',
     name: 'WBTC',
+    protocol: 'compound',
+  },
+  USDC: {
+    address: '0xb7a4F3E9097C08dA09517b5aB877F7a917224ede',
+    name: 'USDC',
     protocol: 'compound',
   },
 };
@@ -30,6 +35,11 @@ const tokensRinkeby = {
   DAI: {
     address: '0x4aAded56bd7c69861E8654719195fCA9C670EB45',
     name: 'DAI',
+    protocol: 'aave',
+  },
+  USDC: {
+    address: '0xb18d016cDD2d9439A19f15633005A6b2cd6Aa774',
+    name: 'USDC',
     protocol: 'aave',
   },
 };
