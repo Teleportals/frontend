@@ -1,0 +1,38 @@
+.container {
+  position: relative;
+  margin: 1rem 0;
+  padding: 2rem;
+  border: black solid 2px;
+  box-shadow: 5px 5px 0px #ceadfa, 7px 7px 0px black;
+  border-radius: 16px;
+  background-repeat: no-repeat;
+  max-width: 800px;
+  overflow: hidden;
+}
+
+.information {
+  box-shadow: 5px 5px 0px black;
+  background-color: #cda7fd;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.numericLabel {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.7rem;
+  padding: 0.5rem;
+}
+
+.arrowImage {
+  transition: transform 300ms ease;
+  cursor: pointer;
+}
+
+.details[open] .arrowImage {
+  transform: rotate(180deg);
+}
+
+.details > summary {
+  list-style: none;
+}
