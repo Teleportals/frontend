@@ -24,7 +24,7 @@ export default function Teleport() {
     addressOrName: COMPOUND_PROVIDER_ADDR,
     contractInterface: PROVIDER_ABI,
     signerOrProvider: providerKovan,
-  });
+  })
 
   useEffect(() => {
     async function fetch() {
@@ -35,7 +35,9 @@ export default function Teleport() {
       );
       const positionAave = {
         collateral: balancesAave.collateral,
+        collateralToken: tokensRinkeby.WBTC,
         debt: balancesAave.debt,
+        debtToken: tokensRinkeby.USDC,
         chain: 'Rinkeby',
         protocol: 'Aave',
       };
@@ -46,7 +48,9 @@ export default function Teleport() {
       );
       const positionCompound = {
         collateral: balancesCompound.collateral,
+        collateralToken: tokensKovan.WBTC,
         debt: balancesCompound.debt,
+        debtToken: tokensKovan.USDC,
         chain: 'Kovan',
         protocol: 'Compound',
       };
