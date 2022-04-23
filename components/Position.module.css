@@ -4,10 +4,17 @@
   padding: 2rem;
   padding-right: calc(2rem + 30px);
   border: black solid 2px;
-  box-shadow: 5px 5px 0px black;
+  box-shadow: 5px 5px 0px #ceadfa, 7px 7px 0px black;
   border-radius: 16px;
   background-color: white;
   max-width: 800px;
+}
+
+.container:nth-of-type(2n) {
+  box-shadow: 5px 5px 0px #e6f064, 7px 7px 0px black;
+}
+.container:nth-child(3n) {
+  box-shadow: 5px 5px 0px #8180ff, 7px 7px 0px black;
 }
 
 .container:hover {
@@ -26,7 +33,7 @@
   top: 50%;
   transform: translateY(-50%);
   right: -30px;
-  background-color: lightgrey;
+  background-color: #ffbc5a;
   border: 2px solid black;
   border-radius: 100px;
 }

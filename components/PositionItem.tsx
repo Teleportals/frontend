@@ -1,9 +1,16 @@
 import { Box, Flex } from "reflexbox"
 import styles from "./Position.module.css"
+import { MouseEventHandler } from "react"
+import { Position } from "../types/Position"
 
-export default function Position() {
+interface Props {
+  onClick: MouseEventHandler
+  position: Position
+}
+
+export default function PositionItem({ onClick, position }: Props) {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={onClick}>
       <Flex justifyContent="space-between" alignItems="center">
         <Box>
           <div className={styles.chainName}>Ethereum</div>

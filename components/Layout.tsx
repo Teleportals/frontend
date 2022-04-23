@@ -3,7 +3,6 @@ import Footer from "./Footer"
 import { Box, Flex } from "reflexbox"
 import styles from "./Layout.module.css"
 import { useAccount, useConnect } from "wagmi"
-import Teleport from "../pages/teleport"
 import EthAddress from "./EthAddress"
 
 export default function Layout({ children }) {
@@ -17,9 +16,11 @@ export default function Layout({ children }) {
       <Flex>
         <div className={styles.left}>
           <nav>
-            <div className={styles.logo}>Lorem ipsum</div>
+            <div className={styles.logo}>FLOANS</div>
             <Link href="/teleport">
-              <a className={styles.link}>Teleport</a>
+              <a className={styles.link} style={{ backgroundColor: "#9ABBFF" }}>
+                Teleport
+              </a>
             </Link>
             <Link href="/pending">
               <a className={styles.link}>Pending</a>
