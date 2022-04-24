@@ -6,6 +6,7 @@ import { useAccount, useConnect } from "wagmi"
 import EthAddress from "./EthAddress"
 import styles from "./Layout.module.css"
 import "reactjs-popup/dist/index.css"
+import Image from "next/image"
 
 export default function Layout({ children }: any) {
   const [{ data, error, loading }, disconnect] = useAccount({})
@@ -16,7 +17,10 @@ export default function Layout({ children }: any) {
       <Flex>
         <div className={styles.left}>
           <nav>
-            <div className={styles.logo}>FLOANS</div>
+            {/* <div className={styles.logo}>FLOANS</div> */}
+            <Box mb="4" textAlign="center">
+              <Image src="/logo.png" width="100px" height="50px" />
+            </Box>
             <Link href="/teleport">
               <a className={styles.link} style={{ backgroundColor: "#9ABBFF" }}>
                 Teleport
