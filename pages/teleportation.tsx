@@ -7,6 +7,7 @@ import styles from "./teleport.module.css"
 import TeleportForm from "../components/TeleportForm"
 import { Position } from "../types/Position.d"
 import PositionItem from "../components/PositionItem"
+import { Box } from "reflexbox"
 
 const COLL = "WBTC"
 const DEBT = "USDC"
@@ -72,14 +73,21 @@ export default function Teleport() {
 
 
   return (
-    <div>
+    <Box maxWidth="800px" margin="2rem auto">
       <h1 className={styles.title}>
-        Select a position to teleport in minutes
+        Select a position to <br />
+        teleport in minutes.
+        <img
+          src="/fancy1.png"
+          width="300px"
+          height="140px"
+          className={styles.titleImg}
+        />
       </h1>
-      <p>
+      <Box mb="4">
         Enjoy lower borrowing rates in the chain you desire.
         Each position is teleported individaully.
-      </p>
+      </Box>
 
       {positions.map(p => (
         <PositionItem
@@ -88,6 +96,6 @@ export default function Teleport() {
           position={p}
         />
       ))}
-    </div>
+    </Box>
   )
 }

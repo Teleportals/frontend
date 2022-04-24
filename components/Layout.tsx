@@ -21,16 +21,16 @@ export default function Layout({ children }: any) {
             <Box mb="4" textAlign="center">
               <Image src="/logo.png" width="100px" height="50px" />
             </Box>
-            <Link href="/teleport">
+            <Link href="/teleportation">
               <a className={styles.link} style={{ backgroundColor: "#9ABBFF" }}>
-                <Image src="/positions.png" width="17px" height="15px" style={{marginRight:"8px"}} />
+                <Image src="/positions.png" width="17px" height="15px" style={{ marginRight: "8px" }} />
                 Teleport
               </a>
             </Link>
             <Link href="/pending">
               <a className={styles.link}>
-                <Image src="/teleportations.png" width="22px" height="22px" style={{marginRight:"8px"}} />
-                  Pending
+                <Image src="/teleportations.png" width="20px" height="20px" style={{ marginRight: "8px" }} />
+                Pending
               </a>
             </Link>
           </nav>

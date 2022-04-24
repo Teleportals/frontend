@@ -62,6 +62,7 @@ summary.select:hover {
   border: 2px solid black;
   border-radius: 8px;
   overflow: hidden;
+  z-index: 100;
 }
 
 .dropdown li:hover {
