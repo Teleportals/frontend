@@ -19,3 +19,8 @@ a {
 * {
   box-sizing: border-box;
 }
+
+/* TODO: Remove */
+.MuiStepIcon-root.MuiStepIcon-active {
+  color: black !important;
+}
