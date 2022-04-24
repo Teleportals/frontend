@@ -23,11 +23,15 @@ export default function Layout({ children }: any) {
             </Box>
             <Link href="/teleport">
               <a className={styles.link} style={{ backgroundColor: "#9ABBFF" }}>
+                <Image src="/positions.png" width="17px" height="15px" style={{marginRight:"8px"}} />
                 Teleport
               </a>
             </Link>
             <Link href="/pending">
-              <a className={styles.link}>Pending</a>
+              <a className={styles.link}>
+                <Image src="/teleportations.png" width="22px" height="22px" style={{marginRight:"8px"}} />
+                  Pending
+              </a>
             </Link>
           </nav>
         </div>
