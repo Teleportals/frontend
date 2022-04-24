@@ -1,3 +1,4 @@
+import { ethers } from "ethers"
 import Image from "next/image"
 import { Box, Flex } from "reflexbox"
 import { Position } from "../types/Position.d"
@@ -21,6 +22,7 @@ const steps = [
 ]
 
 export default function TeleportForm({ position, afterTeleportation }: Props) {
+  const { debt, debtToken, collateral, collateralToken } = position
   const [activeStep, setActiveStep] = useState(0)
 
   useEffect(() => {
@@ -70,18 +72,22 @@ export default function TeleportForm({ position, afterTeleportation }: Props) {
                         <Flex justifyContent="space-between">
                           <Box width={0.5}>
                             <div>Collateral</div>
-                            <div className={styles.numericLabel}>1 Ether</div>
+                            <div className={styles.numericLabel}>
+                              {parseFloat(ethers.utils.formatUnits(collateral, collateralToken.decimals)).toFixed(2)} {collateralToken.name}
+                            </div>
                           </Box>
                           <Box width={0.5}>
                             <div>Debt</div>
-                            <div className={styles.numericLabel}>1 Ether</div>
+                            <div className={styles.numericLabel}>
+                              {parseFloat(ethers.utils.formatUnits(debt, debtToken.decimals)).toFixed(2)} {debtToken.name}
+                            </div>
                           </Box>
                         </Flex>
                         <Flex justifyContent="space-between" mt="4">
                           <Box width={0.5}>
                             <div>Estimated fees</div>
                             <div className={styles.numericLabel}>
-                              0.0001 Ether
+                              0.04 Ether
                             </div>
                           </Box>
                           <Box width={0.5}>
@@ -111,7 +117,7 @@ export default function TeleportForm({ position, afterTeleportation }: Props) {
                         <Flex justifyContent="space-between">
                           <Box width={1} marginLeft="20px" marginTop="-25px">
                             <div>Transaction Fee on Ethereum</div>
-                            <div className={styles.numericLabel}>0.2 Ether</div>
+                            <div className={styles.numericLabel}>0.02 Ether</div>
                           </Box>
                         </Flex>
                       </li>
@@ -119,7 +125,7 @@ export default function TeleportForm({ position, afterTeleportation }: Props) {
                         <Flex justifyContent="space-between">
                           <Box width={1} marginLeft="20px" marginTop="-25px">
                             <div>Bridging Fee using Connext</div>
-                            <div className={styles.numericLabel}>0.1 Ether</div>
+                            <div className={styles.numericLabel}>0.01 Ether</div>
                           </Box>
                         </Flex>
                       </li>
@@ -127,7 +133,7 @@ export default function TeleportForm({ position, afterTeleportation }: Props) {
                         <Flex justifyContent="space-between">
                           <Box width={1} marginLeft="20px" marginTop="-25px">
                             <div>Service Fee using Floan</div>
-                            <div className={styles.numericLabel}>0.08 Ether</div>
+                            <div className={styles.numericLabel}>0.01 Ether</div>
                           </Box>
                         </Flex>
                       </li>
@@ -179,7 +185,7 @@ export default function TeleportForm({ position, afterTeleportation }: Props) {
                   <select
                     name="chain"
                     className={styles.select}
-                    defaultValue="rinkeby"
+                    defaultValue="kovan"
                   >
                     <option value="rinkeby">Rinkeby</option>
                     <option value="kovan">Kovan</option>
@@ -191,10 +197,10 @@ export default function TeleportForm({ position, afterTeleportation }: Props) {
                   <select
                     name="protocol"
                     className={styles.select}
-                    defaultValue="aave"
+                    defaultValue="compound"
                   >
+                    <option value="compound">Compound</option>
                     <option value="aave">Aave</option>
-                    <option value="makerdao">MakerDao</option>
                   </select>
                 </form>
               </Box>
@@ -235,7 +241,7 @@ export default function TeleportForm({ position, afterTeleportation }: Props) {
           >
             <div className={styles.title}>Teleporting in progress..</div>
             {/* TODO: Chain */}
-            <p>Waiting for the Tx to be confirmed on Optimism.</p>
+            <p>Waiting for the Tx to be confirmed on Kovan.</p>
             <Player
               autoplay
               loop
@@ -259,14 +265,14 @@ export default function TeleportForm({ position, afterTeleportation }: Props) {
           >
             <div className={styles.title}>Success !</div>
             {/* TODO: Chain */}
-            <p>Your position has successfully been teleported to Optimism.</p>
+            <p>Your position has successfully been teleported to Kovan.</p>
             <Box mb="4" mt="4">
               <Image src="/success.png" width="200px" height="200px" />
             </Box>
             <p>
               Tx on chain1:{" "}
               <a className={styles.link} href="#">
-                0x96…326f3bd81d6f64da8b0fe3d79
+                0xa6…c419e6b81f1cd83dba2ed7c70
               </a>
             </p>
             <p>
@@ -276,7 +282,7 @@ export default function TeleportForm({ position, afterTeleportation }: Props) {
               </a>
             </p>
             <Flex justifyContent="center" mt="4">
-              <Link href="/teleport?endOfDemo=true">
+              <Link href="/teleportation?txState=end">
                 <a className={styles.button} onClick={afterTeleportation}>
                   Back to positions
                 </a>
