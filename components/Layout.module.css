@@ -47,6 +47,10 @@
 
 summary.select {
   list-style: none;
+  cursor: pointer;
+}
+summary.select:hover {
+  background-color: lightgrey;
 }
 
 .dropdown {

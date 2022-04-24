@@ -1,7 +1,8 @@
-import { Provider, chain, defaultChains } from 'wagmi'
-import { InjectedConnector } from 'wagmi/connectors/injected'
-import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
-import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
+import dynamic from "next/dynamic"
+import { Provider, chain, defaultChains } from "wagmi"
+import { InjectedConnector } from "wagmi/connectors/injected"
+import { WalletConnectConnector } from "wagmi/connectors/walletConnect"
+import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet"
 import type { AppProps } from "next/app"
 import Layout from "../components/Layout"
 import "../styles/globals.css"
@@ -26,7 +27,7 @@ const connectors = () => {
     }),
     new CoinbaseWalletConnector({
       options: {
-        appName: 'Floan',
+        appName: "Floan",
         jsonRpcUrl: `${rpcUrl}/${infuraId}`,
       },
     }),
@@ -43,4 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   )
 }
 
-export default MyApp
+// export default MyApp
+export default dynamic(() => Promise.resolve(MyApp), {
+  ssr: false,
+})

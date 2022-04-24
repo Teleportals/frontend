@@ -47,7 +47,7 @@ export default function Layout({ children }: any) {
                 <summary className={styles.select}>Connect</summary>
                 <ul className={styles.dropdown}>
                   {cdata.connectors.map(connector => (
-                    <li>
+                    <li key={connector.id}>
                       <button
                         disabled={!connector.ready}
                         key={connector.id}

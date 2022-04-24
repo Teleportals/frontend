@@ -163,7 +163,7 @@ export default function TeleportForm({ position }: Props) {
               </Box>
             </Flex>
 
-            <Flex justifyContent="center" w={1}>
+            <Flex justifyContent="center">
               <button className={styles.button}>Teleport</button>
             </Flex>
           </>

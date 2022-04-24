@@ -10,8 +10,8 @@ import TeleportForm from "../components/TeleportForm"
 import { Position } from "../types/Position.d"
 import PositionItem from "../components/PositionItem"
 
-const COLL = 'WBTC'
-const DEBT = 'USDC'
+const COLL = "WBTC"
+const DEBT = "USDC"
 
 export default function Teleport() {
   const [{ data }] = useAccount({})
@@ -46,49 +46,50 @@ export default function Teleport() {
       aave.RINKEBY,
       compound.KOVAN,
       tokensRinkeby[COLL].address,
-      positionAave.collateral,
+      aavePosition?.collateral,
       tokensRinkeby[DEBT].address,
-      positionAave.debt,
+      aavePosition?.debt
     )
 
     const receipt = await tx.wait()
-    console.log(receipt);
+    console.log(receipt)
   }
 
   useEffect(() => {
     async function fetch() {
+      console.count("fetch")
       const balancesAave = await providerAave.getPairBalances(
         tokensRinkeby[COLL].address,
         tokensRinkeby[DEBT].address,
-        data.address,
-      );
+        data?.address
+      )
       const positionAave = {
         collateral: balancesAave.collateral,
         collateralToken: tokensRinkeby[COLL],
         debt: balancesAave.debt,
         debtToken: tokensRinkeby[DEBT],
-        chain: 'Rinkeby',
-        protocol: 'Aave',
-      };
+        chain: "Rinkeby",
+        protocol: "Aave",
+      }
       const balancesCompound = await providerCompound.getPairBalances(
         tokensKovan[COLL].address,
         tokensKovan[DEBT].address,
-        data.address,
-      );
+        data?.address
+      )
       const positionCompound = {
         collateral: balancesCompound.collateral,
         collateralToken: tokensKovan[COLL],
         debt: balancesCompound.debt,
         debtToken: tokensKovan[DEBT],
-        chain: 'Kovan',
-        protocol: 'Compound',
-      };
+        chain: "Kovan",
+        protocol: "Compound",
+      }
       setAavePosition(positionAave)
       setCompoundPosition(positionCompound)
-      setPositions([positionAave, positionCompound]);
+      setPositions([positionAave, positionCompound])
     }
-    if (data && data.address) fetch()
-  }, [data])
+    if (data?.address) fetch()
+  }, [data?.address])
 
   if (positionToTeleport) {
     return (
