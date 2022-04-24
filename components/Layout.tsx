@@ -19,18 +19,30 @@ export default function Layout({ children }: any) {
           <nav>
             {/* <div className={styles.logo}>FLOANS</div> */}
             <Box mb="4" textAlign="center">
-              <Image src="/logo.png" width="100px" height="50px" />
+              <Image src="/logo.png" width="130px" height="50px" />
             </Box>
             <Link href="/teleportation">
               <a className={styles.link} style={{ backgroundColor: "#9ABBFF" }}>
-                <Image src="/positions.png" width="17px" height="15px" style={{ marginRight: "8px" }} />
-                Teleport
+                <Flex alignItems="center" justifyContent="space-around">
+                  <Box>
+                    <Image src="/positions.png" width="17px" height="15px" style={{ marginRight: "8px" }} />
+                  </Box>
+                  <Box>
+                    Teleport
+                  </Box>
+                </Flex>
               </a>
             </Link>
             <Link href="/pending">
               <a className={styles.link}>
-                <Image src="/teleportations.png" width="20px" height="20px" style={{ marginRight: "8px" }} />
-                Pending
+                <Flex alignItems="center" justifyContent="space-around">
+                  <Box>
+                    <Image src="/teleportations.png" width="20px" height="18px" style={{ marginRight: "8px" }} />
+                  </Box>
+                  <Box>
+                    Pending
+                  </Box>
+                </Flex>
               </a>
             </Link>
           </nav>
