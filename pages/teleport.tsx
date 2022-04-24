@@ -104,7 +104,6 @@ export default function Teleport() {
 
   return (
     <div>
-      <button onClick={() => setPositionToTeleport(positions[0])}>Swap</button>
       <h1 className={styles.title}>
         Select a position to teleport in minutes.
       </h1>
