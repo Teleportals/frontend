@@ -3,13 +3,15 @@ import { Box, Flex } from "reflexbox"
 import { Position } from "../types/Position.d"
 import styles from "./TeleportForm.module.css"
 import { Step, StepLabel, Stepper } from "@material-ui/core"
-import { useState } from "react"
+import { MouseEventHandler, useEffect, useState } from "react"
 import "animate.css"
 import { Player } from "@lottiefiles/react-lottie-player"
 import lottieEther from "../assets/lottie-ether.json"
+import Link from "next/link"
 
 interface Props {
   position: Position
+  afterTeleportation: MouseEventHandler
 }
 
 const steps = [
@@ -18,17 +20,25 @@ const steps = [
   "Wait for confirmation",
 ]
 
-export default function TeleportForm({ position }: Props) {
+export default function TeleportForm({ position, afterTeleportation }: Props) {
   const [activeStep, setActiveStep] = useState(0)
+
+  useEffect(() => {
+    const handler = () =>
+      activeStep < steps.length && setActiveStep(activeStep + 1)
+
+    document.addEventListener("keyup", handler)
+    return () => document.removeEventListener("keyup", handler)
+  })
 
   return (
     <>
       {/* {activeStep > 0 && (
         <button onClick={() => setActiveStep(activeStep - 1)}>Prev</button>
       )} */}
-      {activeStep < steps.length && (
+      {/* {activeStep < steps.length && (
         <button onClick={() => setActiveStep(activeStep + 1)}>Next</button>
-      )}
+      )} */}
       <div className={styles.container}>
         <Box width={0.6} margin="auto">
           <Stepper activeStep={activeStep} alternativeLabel>
@@ -191,7 +201,12 @@ export default function TeleportForm({ position }: Props) {
             </Flex>
 
             <Flex justifyContent="center">
-              <button className={styles.button}>Teleport</button>
+              <button
+                className={styles.button}
+                onClick={() => setActiveStep(activeStep + 1)}
+              >
+                Teleport
+              </button>
             </Flex>
           </>
         )}
@@ -260,6 +275,13 @@ export default function TeleportForm({ position }: Props) {
                 0x96…326f3bd81d6f64da8b0fe3d79
               </a>
             </p>
+            <Flex justifyContent="center" mt="4">
+              <Link href="/teleport?endOfDemo=true">
+                <a className={styles.button} onClick={afterTeleportation}>
+                  Back to positions
+                </a>
+              </Link>
+            </Flex>
           </Box>
         )}
       </div>
