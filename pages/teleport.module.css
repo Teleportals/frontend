@@ -1,5 +1,12 @@
 .title {
   font-family: Helvetica;
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: bold;
+  position: relative;
+}
+
+.titleImg {
+  position: absolute;
+  right: 0;
+  top: -20px;
 }
