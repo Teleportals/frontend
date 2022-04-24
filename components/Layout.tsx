@@ -7,7 +7,7 @@ import EthAddress from "./EthAddress"
 import styles from "./Layout.module.css"
 import "reactjs-popup/dist/index.css"
 
-export default function Layout({ children }) {
+export default function Layout({ children }: any) {
   const [{ data, error, loading }, disconnect] = useAccount({})
   const [{ data: cdata, error: cerror }, connect] = useConnect()
 
