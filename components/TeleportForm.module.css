@@ -38,8 +38,14 @@
   list-style: none;
 }
 
-.title {
+.formTitle {
   font-size: 0.7rem;
+  font-family: "Press Start 2P", cursive;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 1.2rem;
   font-family: "Press Start 2P", cursive;
   margin-bottom: 2rem;
 }
@@ -77,7 +83,7 @@
   cursor: pointer;
 }
 
-.feeItems > li { 
+.feeItems > li {
   padding-left: 15px;
   position: relative;
   border-left: 1px solid #000;
@@ -85,15 +91,19 @@
   list-style-type: none;
 }
 
-.feeItems > li::before { 
-    position: relative;
-    top: -4px;
-    width: 15px;
-    border-bottom: 1px solid #000;
-    content: ' ';
-    display: inline-block;
+.feeItems > li::before {
+  position: relative;
+  top: -4px;
+  width: 15px;
+  border-bottom: 1px solid #000;
+  content: " ";
+  display: inline-block;
 }
 
-.feeItems > li:last-child { 
+.feeItems > li:last-child {
   height: 1px;
+}
+
+.link {
+  text-decoration: underline;
 }
