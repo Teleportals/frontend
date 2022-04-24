@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { useAccount, useContract } from "wagmi"
-import { PROVIDER_ABI } from "../globals/abis"
-import { AAVE_PROVIDER_ADDR, COMPOUND_PROVIDER_ADDR } from "../globals/addresses"
+import { BigNumber } from "ethers"
+import { PROVIDER_ABI, TELEPORTER_ABI } from "../globals/abis"
+import { aave, compound, teleporter } from "../globals/addresses"
 import { tokensRinkeby, tokensKovan } from "../globals/tokens"
 import { providerRinkeby, providerKovan } from "../globals/providers"
 import styles from "./teleport.module.css"
@@ -15,19 +16,44 @@ const DEBT = 'USDC'
 export default function Teleport() {
   const [{ data }] = useAccount({})
   const [positions, setPositions] = useState<Position[]>([])
+  const [aavePosition, setAavePosition] = useState<Position>()
+  const [compoundPosition, setCompoundPosition] = useState<Position>()
   const [positionToTeleport, setPositionToTeleport] = useState<Position>()
 
   const providerAave = useContract({
-    addressOrName: AAVE_PROVIDER_ADDR,
+    addressOrName: aave.RINKEBY,
     contractInterface: PROVIDER_ABI,
     signerOrProvider: providerRinkeby,
   })
 
   const providerCompound = useContract({
-    addressOrName: COMPOUND_PROVIDER_ADDR,
+    addressOrName: compound.KOVAN,
     contractInterface: PROVIDER_ABI,
     signerOrProvider: providerKovan,
   })
+
+  const teleporterR = useContract({
+    addressOrName: teleporter.RINKEBY,
+    contractInterface: TELEPORTER_ABI,
+    signerOrProvider: providerRinkeby,
+  })
+
+  const teleportPosition = async () => {
+    // origin, dest, origin provider addr, dest provider addr, coll addr, coll amount, debt addr, debt amount
+    const tx = await teleporterR.initiateLoanTransfer(
+      BigNumber.from(1111),
+      BigNumber.from(2221),
+      aave.RINKEBY,
+      compound.KOVAN,
+      tokensRinkeby[COLL].address,
+      positionAave.collateral,
+      tokensRinkeby[DEBT].address,
+      positionAave.debt,
+    )
+
+    const receipt = await tx.wait()
+    console.log(receipt);
+  }
 
   useEffect(() => {
     async function fetch() {
@@ -57,6 +83,8 @@ export default function Teleport() {
         chain: 'Kovan',
         protocol: 'Compound',
       };
+      setAavePosition(positionAave)
+      setCompoundPosition(positionCompound)
       setPositions([positionAave, positionCompound]);
     }
     if (data && data.address) fetch()
