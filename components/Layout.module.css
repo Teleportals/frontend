@@ -44,3 +44,29 @@
   font-family: initial;
   font-size: 1.2rem;
 }
+
+summary.select {
+  list-style: none;
+}
+
+.dropdown {
+  position: absolute;
+  background: white;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 2px solid black;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.dropdown li:hover {
+  background-color: lightgrey;
+}
+
+.dropdown button {
+  all: initial;
+  cursor: pointer;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+}

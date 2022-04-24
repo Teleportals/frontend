@@ -43,27 +43,24 @@ export default function Layout({ children }) {
                 </div>
               </>
             ) : (
-              <Popup
-                trigger={
-                  <button className={styles.select}>Connect</button>
-                } 
-                position="bottom center"
-              >
-                <div>
-                  {cdata.connectors.map((connector) => (
-                    <button
-                      disabled={!connector.ready}
-                      key={connector.id}
-                      onClick={() => connect(connector)}
-                    >
-                      {connector.name}
-                      {!connector.ready && ' (unsupported)'}
-                    </button>
+              <details>
+                <summary className={styles.select}>Connect</summary>
+                <ul className={styles.dropdown}>
+                  {cdata.connectors.map(connector => (
+                    <li>
+                      <button
+                        disabled={!connector.ready}
+                        key={connector.id}
+                        onClick={() => connect(connector)}
+                      >
+                        {connector.name}
+                        {!connector.ready && " (unsupported)"}
+                      </button>
+                    </li>
                   ))}
-
-                  {cerror && <div>{cerror?.message ?? 'Failed to connect'}</div>}
-                </div>
-              </Popup>
+                </ul>
+                {cerror && <div>{cerror?.message ?? "Failed to connect"}</div>}
+              </details>
             )}
           </Flex>
           {children}
