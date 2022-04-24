@@ -75,7 +75,7 @@ export default function TeleportForm({ position }: Props) {
                             </div>
                           </Box>
                           <Box width={0.5}>
-                            <Flex alignItems="center">
+                            <Flex alignItems="center" className={styles.feeStructure}>
                               View fees composition
                               <Box ml="4">
                                 <Image
@@ -92,12 +92,39 @@ export default function TeleportForm({ position }: Props) {
                     </Flex>
                   </Flex>
                 </summary>
-
-                <ul className={styles.feeItems}>
-                  <li>Transaction Fee on Ethereum</li>
-                  <li>Bridging Fee using Connext</li>
-                  <li>Service Fee using Floan</li>
-                </ul>
+                <Flex mt="-5" mb="3">
+                  <Box width="70px">
+                  </Box>
+                  <Box>
+                    <ul className={styles.feeItems} >
+                      <li>
+                        <Flex justifyContent="space-between">
+                          <Box width={1} marginLeft="20px" marginTop="-25px">
+                            <div>Transaction Fee on Ethereum</div>
+                            <div className={styles.numericLabel}>0.2 Ether</div>
+                          </Box>
+                        </Flex>
+                      </li>
+                      <li>
+                        <Flex justifyContent="space-between">
+                          <Box width={1} marginLeft="20px" marginTop="-25px">
+                            <div>Bridging Fee using Connext</div>
+                            <div className={styles.numericLabel}>0.1 Ether</div>
+                          </Box>
+                        </Flex>
+                      </li>
+                      <li>
+                        <Flex justifyContent="space-between">
+                          <Box width={1} marginLeft="20px" marginTop="-25px">
+                            <div>Service Fee using Floan</div>
+                            <div className={styles.numericLabel}>0.08 Ether</div>
+                          </Box>
+                        </Flex>
+                      </li>
+                    </ul>
+                  </Box>
+                  
+                </Flex>
               </details>
             </div>
 
