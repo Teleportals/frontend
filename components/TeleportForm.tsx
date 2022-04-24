@@ -47,7 +47,7 @@ export default function TeleportForm({ position }: Props) {
                   <Flex justifyContent="space-between" mt="4">
                     <Box width={0.5}>
                       <div>Estimated fees</div>
-                      <div className={styles.numericLabel}>0.0001 Ether</div>
+                        <div className={styles.numericLabel}>0.0001 Ether</div>
                     </Box>
                     <Box width={0.5}>
                       <Flex alignItems="center">
@@ -67,7 +67,18 @@ export default function TeleportForm({ position }: Props) {
               </Flex>
             </Flex>
           </summary>
-          Testest
+          
+            <ul className={styles.feeItems}>
+              <li>
+                Transaction Fee on Ethereum
+              </li>
+              <li>
+                Bridging Fee using Connext
+              </li>
+              <li>
+                Service Fee using Floan
+              </li>
+            </ul>
         </details>
       </div>
 
