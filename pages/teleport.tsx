@@ -94,10 +94,13 @@ export default function Teleport() {
   if (positionToTeleport) {
     return (
       <>
-        <button onClick={() => setPositionToTeleport(undefined)}>
+        {/* <button onClick={() => setPositionToTeleport(undefined)}>
           &lt; Back
-        </button>
-        <TeleportForm position={positionToTeleport} />
+        </button> */}
+        <TeleportForm
+          position={positionToTeleport}
+          afterTeleportation={() => setPositionToTeleport(undefined)}
+        />
       </>
     )
   }
