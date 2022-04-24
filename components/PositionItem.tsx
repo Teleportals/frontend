@@ -17,7 +17,7 @@ export default function PositionItem({ onClick, position }: Props) {
       <Flex justifyContent="space-between" alignItems="center">
         <Box>
           <div className={styles.chainName}>{chain}</div>
-          <div>{protocol}</div>
+          <Box className={styles.protocol} mt="3">{protocol}</Box>
         </Box>
         <Box>
           <div className={styles.label}>Collateral</div>
