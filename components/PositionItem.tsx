@@ -21,6 +21,7 @@ export default function PositionItem({ onClick, position }: Props) {
         </Box>
         <Box>
           <div className={styles.label}>Collateral</div>
+
           <div className={styles.value}>
             {parseFloat(ethers.utils.formatUnits(collateral, collateralToken.decimals)).toFixed(2)} {collateralToken.name}
           </div>
