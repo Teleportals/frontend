@@ -17,7 +17,10 @@ export default function Layout({ children }: any) {
       <Flex>
         <div className={styles.left}>
           <nav>
-            <div className={styles.logo}>FLOANS</div>
+            {/* <div className={styles.logo}>FLOANS</div> */}
+            <Box mb="4" textAlign="center">
+              <Image src="/logo.png" width="100px" height="50px" />
+            </Box>
             <Link href="/teleport">
               <a className={styles.link} style={{ backgroundColor: "#9ABBFF" }}>
                   <Image src="/positions.png" width="17px" height="15px" />
