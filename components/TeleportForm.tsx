@@ -1,28 +1,31 @@
-import Image from "next/image";
-import { Box, Flex } from "reflexbox";
-import { Position } from "../types/Position.d";
-import styles from "./TeleportForm.module.css";
-import { MouseEventHandler } from "react";
-import { on } from "events";
+import Image from "next/image"
+import { Box, Flex } from "reflexbox"
+import { Position } from "../types/Position.d"
+import styles from "./TeleportForm.module.css"
 import { Step, StepLabel, Stepper } from "@material-ui/core"
 
-
 interface Props {
-  position: Position;
+  position: Position
 }
 
-const steps = ["Choose target chain", "Acceptation", "Confirmation"]
+const steps = [
+  "Choose target chain",
+  "Wait for acceptation",
+  "Wait for confirmation",
+]
 
 export default function TeleportForm({ position }: Props) {
   return (
     <div className={styles.container}>
-      <Stepper activeStep={0} alternativeLabel>
-        {steps.map(label => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
+      <Box width={0.6} margin="auto">
+        <Stepper activeStep={0} alternativeLabel>
+          {steps.map(label => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </Box>
       {/* <Image src="/background_teleport.png" layout="fill" style={{zIndex: 0}}/> */}
       <div className={styles.information}>
         <details className={styles.details}>
@@ -147,5 +150,5 @@ export default function TeleportForm({ position }: Props) {
         <button className={styles.button}>Teleport</button>
       </Flex>
     </div>
-  );
+  )
 }
